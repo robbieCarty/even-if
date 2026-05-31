@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Even If Personal Training</title>
+
+    <style>
+      :root {
+        --background: #ffffff;
+        --foreground: #171717;
+        --primary: #1dff93;
+        --dark: #0f1114;
+        --muted: #f5f5f5;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--background);
+        color: var(--foreground);
+        line-height: 1.6;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .section {
+        padding: 100px 0;
+      }
+
+      h1,
+      h2,
+      h3 {
+        line-height: 1.2;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 2.2rem;
+      }
+
+      .header {
+        position: fixed;
+        width: 100%;
+        z-index: 100;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(10px);
+      }
+
+      .header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 0;
+      }
+
+      .logo {
+        color: var(--primary);
+        font-size: 1.8rem;
+        font-weight: 900;
+        text-decoration: none;
+        letter-spacing: 1px;
+      }
+
+      .logo img {
+        height: 55px;
+        width: auto;
+        display: block;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.95rem;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .hero {
+        min-height: 100vh;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.78)),
+          url("assets/banner_new.png");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .hero-content {
+        color: white;
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        align-items: center;
+        gap: 4rem;
+        padding-top: 90px;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+      }
+
+      .hero-copy p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        max-width: 600px;
+      }
+
+      .brand-message-card {
+        background: rgba(15, 17, 20, 0.72);
+        border: 1px solid rgba(29, 255, 147, 0.35);
+        border-radius: 22px;
+        padding: 2rem;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      }
+
+      .eyebrow {
+        color: var(--primary);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+
+      .message-rotator {
+        position: relative;
+        min-height: 120px;
+        overflow: hidden;
+      }
+
+      .message-rotator p {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transform: translateY(18px);
+        font-size: clamp(1.6rem, 3vw, 2.4rem);
+        font-weight: 800;
+        line-height: 1.2;
+        animation: rotateMessage 35s infinite;
+      }
+
+      .message-rotator p:nth-child(1) {
+        animation-delay: 0s;
+      }
+
+      .message-rotator p:nth-child(2) {
+        animation-delay: 7s;
+      }
+
+      .message-rotator p:nth-child(3) {
+        animation-delay: 14s;
+      }
+
+      .message-rotator p:nth-child(4) {
+        animation-delay: 21s;
+      }
+
+      .message-rotator p:nth-child(5) {
+        animation-delay: 28s;
+      }
+
+      @keyframes rotateMessage {
+        0% {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+
+        8% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        18% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        26% {
+          opacity: 0;
+          transform: translateY(-18px);
+        }
+
+        100% {
+          opacity: 0;
+          transform: translateY(-18px);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 2rem;
+        }
+
+        .hero-copy {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .brand-message-card {
+          width: 100%;
+        }
+
+        .message-rotator {
+          min-height: 95px;
+        }
+      }
+
+      .btn {
+        display: inline-block;
+        background: var(--primary);
+        color: black;
+        padding: 15px 30px;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 8px;
+        width: fit-content;
+        transition: 0.3s;
+      }
+
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(29, 255, 147, 0.25);
+      }
+
+      .intro-text {
+        max-width: 800px;
+        margin: 0 auto 3rem;
+        text-align: center;
+        font-size: 1.1rem;
+      }
+
+      .features,
+      .programmes,
+      .steps {
+        display: grid;
+        gap: 2rem;
+      }
+
+      .features {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+
+      .programmes {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+
+      .steps {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+
+      .feature-card,
+      .programme-card,
+      .step {
+        padding: 2rem;
+        border-radius: 16px;
+        background: var(--muted);
+      }
+
+      .feature-card h3,
+      .programme-card h3,
+      .step h3 {
+        margin-bottom: 1rem;
+      }
+
+      .dark-section {
+        background: var(--dark);
+        color: white;
+      }
+
+      .programme-card {
+        background: #1b1e22;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .programme-card {
+        background: #1b1e22;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        transition: all 0.3s ease;
+      }
+
+      .programme-card:hover {
+        border-color: rgba(29, 255, 147, 0.5);
+        transform: translateY(-4px);
+      }
+
+      .programme-toggle.active-programme {
+        border: 2px solid var(--primary);
+        box-shadow: 0 0 25px rgba(29, 255, 147, 0.15);
+      }
+
+      .programme-toggle {
+        cursor: pointer;
+        text-align: left;
+        color: white;
+        font: inherit;
+        transition: 0.3s;
+      }
+
+      .programme-toggle:hover {
+        transform: translateY(-4px);
+        border-color: var(--primary);
+      }
+
+      .programme-toggle span {
+        display: inline-block;
+        margin-top: 1rem;
+        color: var(--primary);
+        font-weight: bold;
+      }
+
+      .programme-details {
+        display: none;
+        margin-top: 2rem;
+        background: #1b1e22;
+        padding: 2rem;
+        border-radius: 18px;
+        border-left: 5px solid var(--primary);
+      }
+
+      .programme-details.active {
+        display: block;
+      }
+
+      .programme-details h3 {
+        margin-bottom: 1rem;
+      }
+
+      .programme-details p {
+        max-width: 850px;
+        margin-bottom: 1rem;
+      }
+
+      .programme-details ul {
+        margin-left: 1.25rem;
+      }
+
+      .programme-details li {
+        margin-bottom: 0.5rem;
+      }
+
+      .pricing-section {
+        background: #ffffff;
+      }
+
+      .pricing-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .pricing-card {
+        background: #0f1114;
+        color: white;
+        padding: 2.5rem 2rem;
+        border-radius: 18px;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .pricing-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .price {
+        font-size: 3rem;
+        font-weight: bold;
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .old-price {
+        color: #999;
+        text-decoration: line-through;
+        margin-bottom: 0.25rem;
+      }
+
+      .saving {
+        color: var(--primary);
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+
+      .monthly {
+        margin-bottom: 1.5rem;
+        font-weight: bold;
+      }
+
+      .pricing-card {
+        background: #0f1114;
+        color: white;
+        padding: 2.5rem 2rem;
+        border-radius: 18px;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        transition: all 0.3s ease;
+      }
+
+      .pricing-card:hover {
+        border-color: rgba(29, 255, 147, 0.5);
+        transform: translateY(-4px);
+      }
+
+      .pricing-note {
+        text-align: center;
+        margin-top: 2rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .step span {
+        display: block;
+        color: rgb(16, 179, 122);
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 0.75rem;
+      }
+
+      .contact-section {
+        text-align: center;
+      }
+
+      .contact-section p {
+        margin-bottom: 2rem;
+      }
+
+      .footer {
+        background: #0f1114;
+        color: white;
+        padding: 30px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .footer-links a {
+        color: var(--primary);
+        text-decoration: none;
+        transition: 0.3s;
+      }
+
+      .footer-links a:hover {
+        opacity: 0.8;
+      }
+
+      @media (max-width: 768px) {
+        .header .container {
+          justify-content: center;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .logo {
+          font-size: 1.5rem;
+        }
+
+        .section {
+          padding: 70px 0;
+        }
+
+        .brand-story {
+          min-height: 500vh;
+        }
+
+        .story-line {
+          text-align: center;
+          align-items: center;
+        }
+
+        .featured-price {
+          transform: none;
+        }
+
+        .footer-content {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="#" class="logo">EVEN IF</a>
+
+        <nav>
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#programmes">Programmes</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#process">How It Works</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-content">
+          <div class="hero-copy">
+            <h1>
+              Train With Purpose.<br />
+              Progress With Support.
+            </h1>
+
+            <p>
+              Personalised online coaching designed to help you build strength,
+              confidence and lasting habits.
+            </p>
+
+            <a href="#contact" class="btn">Start Coaching</a>
+          </div>
+
+          <div class="brand-message-card">
+            <p class="eyebrow">The Even If mindset</p>
+
+            <div class="message-rotator">
+              <p>Even if the journey is long...</p>
+              <p>Even if there are setbacks...</p>
+              <p>Even if motivation comes and goes...</p>
+              <p>Even if life gets busy...</p>
+              <p>Even if progress feels slow...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <div class="container">
+          <h2>About The Coaching</h2>
+
+          <p class="intro-text">
+            Whether you're just getting started or looking to take your training
+            to the next level, every programme is tailored to your goals,
+            lifestyle and experience level.
+          </p>
+
+          <div class="features">
+            <div class="feature-card">
+              <h3>Custom Training</h3>
+              <p>Programmes built around your goals, ability and schedule.</p>
+            </div>
+
+            <div class="feature-card">
+              <h3>Nutrition Guidance</h3>
+              <p>Simple, practical guidance to support your progress.</p>
+            </div>
+
+            <div class="feature-card">
+              <h3>Weekly Support</h3>
+              <p>Regular check-ins and direct communication throughout.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="programmes" class="section dark-section">
+        <div class="container">
+          <h2>Coaching Programmes</h2>
+
+          <p class="intro-text">
+            Choose a programme below to see what’s included.
+          </p>
+
+          <div class="programmes">
+            <button class="programme-card programme-toggle" type="button">
+              <h3>4 Week Coaching</h3>
+              <p>A focused introduction to online coaching.</p>
+              <span>View details</span>
+            </button>
+
+            <button
+              class="programme-card programme-toggle featured"
+              type="button"
+            >
+              <h3>8 Week Coaching</h3>
+              <p>Build momentum and achieve measurable progress.</p>
+              <span>View details</span>
+            </button>
+
+            <button class="programme-card programme-toggle" type="button">
+              <h3>12 Week Coaching</h3>
+              <p>A deeper coaching experience for long-term progression.</p>
+              <span>View details</span>
+            </button>
+          </div>
+
+          <div class="programme-details">
+            <h3>4 Week 1:1 Online Coaching Programme</h3>
+            <p>
+              A challenging 4-week induction programme, personally tailored to
+              you. Ideal for getting a taste of online coaching and building key
+              habits.
+            </p>
+            <ul>
+              <li>Tailored workout programme</li>
+              <li>Nutritional guidance</li>
+              <li>Weekly check-in forms</li>
+              <li>Direct inbox support</li>
+            </ul>
+          </div>
+
+          <div class="programme-details">
+            <h3>8 Week 1:1 Online Coaching Programme</h3>
+            <p>
+              Designed to help you achieve measurable progress in a short space
+              of time, with a clear goal and dependable support.
+            </p>
+            <ul>
+              <li>Personalised workout programme</li>
+              <li>Nutritional guidance throughout</li>
+              <li>Progress tracking and weekly check-ins</li>
+              <li>Ongoing 1:1 support whenever needed</li>
+            </ul>
+          </div>
+
+          <div class="programme-details">
+            <h3>12 Week 1:1 Online Coaching Programme</h3>
+            <p>
+              A higher-commitment programme focused on reaching a key milestone
+              towards your ideal physique through consistent weekly progression.
+            </p>
+            <ul>
+              <li>Challenging tailored workout programme</li>
+              <li>Nutritional guidance and meal tracking support</li>
+              <li>Weekly progress monitoring</li>
+              <li>Consistent 1:1 support throughout</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" class="section pricing-section">
+        <div class="container">
+          <h2>Initial Offer — 20% Off</h2>
+
+          <p class="intro-text">
+            Choose the coaching package that best fits your goals and level of
+            commitment.
+          </p>
+
+          <div class="pricing-cards">
+            <div class="pricing-card">
+              <h3>4 Week Package</h3>
+              <p class="price">£112</p>
+              <p class="old-price">Full price £140</p>
+              <p class="saving">Save £28</p>
+              <a href="#contact" class="btn">Enquire Now</a>
+            </div>
+
+            <div class="pricing-card featured-price">
+              <h3>8 Week Package</h3>
+              <p class="price">£195</p>
+              <p class="old-price">Full price £245</p>
+              <p class="saving">Save £50</p>
+              <p class="monthly">Or £105pm</p>
+              <a href="#contact" class="btn">Enquire Now</a>
+            </div>
+
+            <div class="pricing-card">
+              <h3>12 Week Package</h3>
+              <p class="price">£280</p>
+              <p class="old-price">Full price £350</p>
+              <p class="saving">Save £70</p>
+              <p class="monthly">Or £100pm</p>
+              <a href="#contact" class="btn">Enquire Now</a>
+            </div>
+          </div>
+
+          <p class="pricing-note">A larger commitment. A lower overall cost.</p>
+        </div>
+      </section>
+
+      <section id="process" class="section">
+        <div class="container">
+          <h2>How It Works</h2>
+
+          <div class="steps">
+            <div class="step">
+              <span>01</span>
+              <h3>Consultation</h3>
+              <p>
+                We discuss your goals, lifestyle and current training level.
+              </p>
+            </div>
+
+            <div class="step">
+              <span>02</span>
+              <h3>Custom Plan</h3>
+              <p>Your training and nutrition guidance is built around you.</p>
+            </div>
+
+            <div class="step">
+              <span>03</span>
+              <h3>Weekly Check-ins</h3>
+              <p>Progress is reviewed regularly so your plan stays on track.</p>
+            </div>
+
+            <div class="step">
+              <span>04</span>
+              <h3>Results</h3>
+              <p>You build consistency, confidence and long-term habits.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact-section">
+        <div class="container">
+          <h2>Ready To Start?</h2>
+
+          <p>
+            Get in touch to discuss your goals and find the right coaching
+            programme for you.
+          </p>
+
+          <a href="mailto:mark.carty.pt@gmail.com" class="btn">Contact Me</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-content">
+        <p>&copy; 2025 Even If Personal Training. All rights reserved.</p>
+
+        <div class="footer-links">
+          <a href="privacy-policy.html">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const programmeButtons = document.querySelectorAll(".programme-toggle");
+      const programmeDetails = document.querySelectorAll(".programme-details");
+
+      programmeButtons.forEach((button, index) => {
+        button.addEventListener("click", () => {
+          programmeButtons.forEach((btn) =>
+            btn.classList.remove("active-programme"),
+          );
+          programmeDetails.forEach((detail) =>
+            detail.classList.remove("active"),
+          );
+
+          button.classList.add("active-programme");
+          programmeDetails[index].classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>
